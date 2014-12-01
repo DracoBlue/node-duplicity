@@ -23,11 +23,10 @@ var program = require('commander');
 program.version(JSON.parse(fs.readFileSync(__dirname + '/../package.json')).version || 'dev');
 //program.option('-f, --format [format]', 'Which type of output format [text/json]?')
 
-var command = program.command('status');
-command.description('Get the status of a given collection');
-command.option('-u, --url [url]', 'Which collection url?');
-command.action(function(options) {
-    duplicity=new DuplicityCollection(options.url, config);
+var command = program.command('status <url>');
+command.description('Get the status of a given collection at an url');
+command.action(function(url, options) {
+    duplicity=new DuplicityCollection(url, config);
     duplicity.getStatus(function(err, data) {
         if (err)
         {
@@ -40,11 +39,10 @@ command.action(function(options) {
     });
 });
 
-var command = program.command('files');
-command.description('List all the files in a specific collection');
-command.option('-u, --url [url]', 'Which collection url?');
-command.action(function(options) {
-    duplicity=new DuplicityCollection(options.url, config);
+var command = program.command('files <url>');
+command.description('List all the files in a specific collection at an url');
+command.action(function(url, options) {
+    duplicity=new DuplicityCollection(url, config);
     duplicity.getCurrentFiles(function(err, data) {
         if (err)
         {
@@ -57,11 +55,10 @@ command.action(function(options) {
     });
 });
 
-var command = program.command('verify <directory>');
-command.description('Backup a directory');
-command.option('-u, --url [url]', 'To collection url?');
-command.action(function(directory, options) {
-    duplicity=new DuplicityCollection(options.url, config);
+var command = program.command('verify <directory> <url>');
+command.description('Verify the backup of a directory vs. an url');
+command.action(function(directory, url, options) {
+    duplicity=new DuplicityCollection(url, config);
     duplicity.verify(directory, function(err, data) {
         if (err)
         {
@@ -74,11 +71,10 @@ command.action(function(directory, options) {
     });
 });
 
-var command = program.command('full-backup <directory>');
-command.description('Backup a directory');
-command.option('-u, --url [url]', 'To collection url?');
-command.action(function(directory, options) {
-    duplicity=new DuplicityCollection(options.url, config);
+var command = program.command('full-backup <directory> <url>');
+command.description('Create a full backup of a directory to an url');
+command.action(function(directory, url, options) {
+    duplicity=new DuplicityCollection(url, config);
     duplicity.createFullBackup(directory, function(err, data) {
         if (err)
         {
