@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - '0.10'
+before_script:
+  - sudo apt-get install duplicity
 before_deploy:
   - npm install json
   - node_modules/.bin/json -E "this.version='$TRAVIS_TAG'" -f package.json -I
