@@ -16,7 +16,7 @@ DuplicityCollection.prototype.rawCall = function (parameters, cb) {
 		"env": this.options.env
 	},function(error, stdout, stderr)
 	{
-		cb(error, stdout, stderr);
+		cb(error !== null ? error.code : false, stdout, stderr);
 	});
 };
 
@@ -87,15 +87,56 @@ DuplicityCollection.prototype.getCurrentFiles = function (cb) {
 
 DuplicityCollection.prototype.verify = function (directory, cb) {
     this.rawCall(['verify', this.url, directory], function (code, stdout, stderr) {
-        if (code)
-        {
-            cb(code, stdout + "\n" + stderr);
-            return ;
-        }
-        else
-        {
-            cb(code, stdout)
-        }
+//        if (code)
+//        {
+//			console.log('code', code);
+//            cb(code, stdout + "\n" + stderr);
+//            return ;
+//        }
+//        else
+//        {
+		var matchesMultiRegExp = /^Difference found\: (.+)$/mg;
+		var matchesNewFileRegExp = /^Difference found\: New file (.+)$/;
+		var matchesDeletedFileRegExp = /^Difference found\: File (.+) is missing$/;
+		var matchesModifiedFileRegExp = /^Difference found\: File (.+) has mtime (.+), expected (.+)$/;
+
+		var matches = stdout.match(matchesMultiRegExp);
+			var differences = {
+				"newFiles": [],
+				"deletedFiles": [],
+				"modifiedFiles": [],
+				"otherDifferences": []
+			};
+		if (matches)
+		{
+			matches.forEach(function (lineMatch) {
+				var newFileMatch = lineMatch.match(matchesNewFileRegExp);
+				if (newFileMatch)
+				{
+					differences["newFiles"].push(newFileMatch[1]);
+					return ;
+				}
+
+				var deletedFileMatch = lineMatch.match(matchesDeletedFileRegExp);
+				if (deletedFileMatch)
+				{
+					differences["deletedFiles"].push(deletedFileMatch[1]);
+					return ;
+				}
+
+				var modifiedFileMatch = lineMatch.match(matchesModifiedFileRegExp);
+				if (modifiedFileMatch)
+				{
+					differences["modifiedFiles"].push(modifiedFileMatch[1]);
+					return ;
+				}
+
+				differences["other"].push(lineMatch.substr('Difference found: '.length));
+			});
+		};
+			cb(code, differences);
+//			cb(code, stdout)
+//        }
     });
 };
 

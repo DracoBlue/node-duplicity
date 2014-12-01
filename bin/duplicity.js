@@ -60,14 +60,8 @@ command.description('Verify the backup of a directory vs. an url');
 command.action(function(directory, url, options) {
     duplicity=new DuplicityCollection(url, config);
     duplicity.verify(directory, function(err, data) {
-        if (err)
-        {
-            console.error('ERROR: ', data);
-        }
-        else
-        {
-            console.log(data);
-        }
+		console.log(data);
+		process.exit(err);
     });
 });
 
