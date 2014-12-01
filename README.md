@@ -1,4 +1,6 @@
-# node-duplicity (duplicity.js)
+# node-duplicity (duplicity.js) [![Build Status](https://secure.travis-ci.org/DracoBlue/node-duplicity.png?branch=master)](https://travis-ci.org/DracoBlue/node-duplicity)
+
+Latest Release: [![GitHub version](https://badge.fury.io/gh/DracoBlue%2Fnode-duplicity.png)](https://github.com/DracoBlue/node-duplicity/releases)
 
 **Alpha Hint: This is work in progress.**
 
