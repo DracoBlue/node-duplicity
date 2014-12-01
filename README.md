@@ -24,7 +24,7 @@ $ duplicity.js full-backup myproject file://backup
 
 Verify the backup:
 ``` console
-duplicity.js verify myproject file://backup
+$ duplicity.js verify myproject file://backup
 ```
 
 List all files in the backup:
