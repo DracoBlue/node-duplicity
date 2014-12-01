@@ -1,0 +1,27 @@
+{
+  "name": "duplicity",
+  "description": "Wrapper for the duplicity cli tool (with json output)",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DracoBlue/node-duplicity.git"
+  },
+  "bin": {
+	  "duplicity.js": "./bin/duplicity.js"
+  },
+  "keywords": [
+    "duplicity"
+  ],
+  "author": "DracoBlue <JanS@DracoBlue.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DracoBlue/node-duplicity/issues"
+  },
+  "homepage": "https://github.com/DracoBlue/node-duplicity",
+  "dependencies": {
+    "commander": "^2.5.0"
+  }
+}
