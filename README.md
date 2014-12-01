@@ -19,6 +19,16 @@ $ npm install duplicity -g
 
 Let's say, you want to backup a folder called `myproject` into a local backup at `file://backup`.
 
+Create a file called `.duplicity.json` for your configuration (the passphrase will be used for encryption!):
+
+``` json
+{
+    "env": {
+        "PASSPHRASE": "hans"
+    }
+}
+```
+
 Backup myproject to the backup directory:
 ``` console
 $ duplicity.js full-backup myproject file://backup
