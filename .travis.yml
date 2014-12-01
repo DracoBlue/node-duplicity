@@ -1,17 +1,17 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
 before_script:
-  - sudo apt-get install duplicity
+- sudo apt-get install duplicity
 before_deploy:
-  - npm install json
-  - node_modules/.bin/json -E "this.version='$TRAVIS_TAG'" -f package.json -I
-script: "npm test"
+- npm install json
+- node_modules/.bin/json -E "this.version='$TRAVIS_TAG'" -f package.json -I
+script: npm test
 deploy:
   provider: npm
   email: JanS@DracoBlue.de
   api_key:
-    secure: fKf8t75RLkTDhAT0lxelHzoF8Vov9lH52RshQ4StIWnEBVOwfcHSmg58Xr2Ehk1O+5lrKtDgqC4ck68AXsbGGvR4r4Ft/vRd0ZyC7gi3YBWWNtNyGIPJAVsxorRqOP6Wc4ooaeIs4Ra6/DP7KmzgBpXkndDzR75sFe7Wp0yZnqg=
+    secure: HLzzmX+TWBy3JjKmRpF9G+ZPQtFFtD8ptX2wkKQigD3PjA1vYhqGfkLyQyFblH14thfQWXnMJwbomoyh85humN4qSjSyVEFEfDMCcWLhTFPmoJvuIytpDr9SCiaBnUbtDmS5z4M6uVX/cKTDU49F6atKCx1+bWdZVI+AZVmkA7A=
   on:
     tags: true
     repo: DracoBlue/node-duplicity
