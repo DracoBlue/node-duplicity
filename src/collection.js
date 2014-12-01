@@ -179,7 +179,14 @@ DuplicityCollection.prototype.createBackup = function (directory, type, cb) {
 						var keyValueMatch = lineMatch.match(keyValueRegexp);
 						if (keyValueMatch)
 						{
-							statistics[keyValueMatch[1]] = keyValueMatch[2];
+							try
+							{
+								statistics[keyValueMatch[1]] = parseFloat(keyValueMatch[2]);
+							}
+							catch (error)
+							{
+								statistics[keyValueMatch[1]] = keyValueMatch[2];
+							}
 							return ;
 						}
 					});

@@ -1,5 +1,8 @@
+# Development version
 
-# 0.1.0
+- parse statistic values as float/number
+
+# 0.1.1
 
 - added info about .duplicity.json to README
 
