@@ -4,6 +4,7 @@ node_js:
 before_deploy:
   - npm install json
   - node_modules/.bin/json -E "this.version='$TRAVIS_TAG'" -f package.json -I
+script: "npm test"
 deploy:
   provider: npm
   email: JanS@DracoBlue.de
