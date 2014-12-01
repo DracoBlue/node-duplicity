@@ -20,6 +20,21 @@ Let's say, you want to backup a folder called `myproject` into a local backup at
 Backup myproject to the backup directory:
 ``` console
 $ duplicity.js full-backup myproject file://backup
+{ StartTime: Mon Dec 01 2014 15:46:34 GMT+0100 (CET),
+  EndTime: Mon Dec 01 2014 15:46:34 GMT+0100 (CET),
+  ElapsedTime: '0.01',
+  SourceFiles: '4',
+  SourceFileSize: '238',
+  NewFiles: '4',
+  NewFileSize: '238',
+  DeletedFiles: '0',
+  ChangedFiles: '0',
+  ChangedFileSize: '0',
+  ChangedDeltaSize: '0',
+  DeltaEntries: '4',
+  RawDeltaSize: '0',
+  TotalDestinationSizeChange: '254',
+  Errors: '0' }
 ```
 
 Verify the backup:

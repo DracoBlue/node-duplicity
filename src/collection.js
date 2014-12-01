@@ -149,7 +149,47 @@ DuplicityCollection.prototype.createFullBackup = function (directory, cb) {
         }
         else
         {
-            cb(code, stdout)
+			var hasBackupStatistics = stdout.indexOf('[ Backup Statistics ]') !== -1 ? true : false;
+
+			if (hasBackupStatistics)
+			{
+				/* We only want the backupstatistics*/
+				var stdoutBackupStatistics = stdout.substr(stdout.indexOf('[ Backup Statistics ]') + '[ Backup Statistics ]'.length);
+				/* ... they are finished with ----- at the end */
+				stdoutBackupStatistics = stdoutBackupStatistics.substr(0, stdout.indexOf('-------------------------'));
+
+				var matchesMultiRegExp = /^([^ \s]+) (.+)$/gm;
+				var keyValueDateRegExp = /^([^ \s]+) ([^ ]+) \(([^)]+ [^)]+ [^)]+ [^)]+ [^)]+)\)$/;
+				var keyValueRegexp = /^([^ \s]+) ([^ ]+).*$/;
+				var matches = stdoutBackupStatistics.match(matchesMultiRegExp);
+
+				var statistics = {};
+
+				if (matches)
+				{
+					matches.forEach(function (lineMatch) {
+						var keyValueDateMatch = lineMatch.match(keyValueDateRegExp);
+
+						if (keyValueDateMatch)
+						{
+							statistics[keyValueDateMatch[1]] = new Date(keyValueDateMatch[3]);
+							return ;
+						}
+
+						var keyValueMatch = lineMatch.match(keyValueRegexp);
+						if (keyValueMatch)
+						{
+							statistics[keyValueMatch[1]] = keyValueMatch[2];
+							return ;
+						}
+					});
+				}
+				cb(code, statistics);
+			}
+			else
+			{
+				cb(1, {"message": "Stdout did not contain Backup Statistics!" });
+			}
         }
     });
 };
