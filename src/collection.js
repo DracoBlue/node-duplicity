@@ -44,7 +44,7 @@ DuplicityCollection.prototype.getStatus = function (cb) {
                     backups.push({
                         "type": parts[1],
                         "date": new Date(parts[2]),
-                        "volumes": parts[3]
+                        "volumes": parseFloat(parts[3])
                     });
                 }
             });

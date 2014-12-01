@@ -1,6 +1,7 @@
 # Development version
 
 - parse statistic values as float/number
+- parse volumes count as float/number
 
 # 0.1.1
 
