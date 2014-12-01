@@ -140,8 +140,8 @@ DuplicityCollection.prototype.verify = function (directory, cb) {
     });
 };
 
-DuplicityCollection.prototype.createFullBackup = function (directory, cb) {
-    this.rawCall(['full', directory, this.url], function (code, stdout, stderr) {
+DuplicityCollection.prototype.createBackup = function (directory, type, cb) {
+    this.rawCall([type, directory, this.url], function (code, stdout, stderr) {
         if (code)
         {
             cb(code, stdout + "\n" + stderr);
@@ -193,3 +193,13 @@ DuplicityCollection.prototype.createFullBackup = function (directory, cb) {
         }
     });
 };
+
+DuplicityCollection.prototype.createFullBackup = function (directory, cb) {
+	this.createBackup(directory, 'full', cb);
+};
+
+
+DuplicityCollection.prototype.createIncrementalBackup = function (directory, cb) {
+	this.createBackup(directory, 'incremental', cb);
+};
+

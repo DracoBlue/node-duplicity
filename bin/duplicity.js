@@ -80,4 +80,20 @@ command.action(function(directory, url, options) {
         }
     });
 });
+
+var command = program.command('incremental-backup <directory> <url>');
+command.description('Create a incremental backup of a directory to an url');
+command.action(function(directory, url, options) {
+	duplicity=new DuplicityCollection(url, config);
+	duplicity.createIncrementalBackup(directory, function(err, data) {
+		if (err)
+		{
+			console.error('ERROR: ', data);
+		}
+		else
+		{
+			console.log(data);
+		}
+	});
+});
 program.parse(process.argv);

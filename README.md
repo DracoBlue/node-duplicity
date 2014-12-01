@@ -49,16 +49,23 @@ $ duplicity.js verify myproject file://backup
 List all files in the backup:
 ``` console
 $ duplicity.js files file://backup
-[ { date: Tue Nov 25 2014 20:14:11 GMT+0100 (CET), file: '.' },
-  { date: Tue Nov 25 2014 20:14:11 GMT+0100 (CET),
-    file: 'test.txt' } ]
+[ { date: Mon Dec 01 2014 15:09:46 GMT+0100 (CET), file: '.' },
+  { date: Mon Dec 01 2014 15:09:50 GMT+0100 (CET),
+    file: 'hans23' },
+  { date: Mon Dec 01 2014 15:09:50 GMT+0100 (CET),
+    file: 'hans23/hasn23' },
+  { date: Mon Dec 01 2014 14:59:53 GMT+0100 (CET),
+    file: 'test2.txt' } ]
 ```
 
 Get the backup status of the backup:
 ``` console
 $ duplicity.js status file://backup
 [ { type: 'Full',
-    date: Mon Dec 01 2014 14:54:49 GMT+0100 (CET),
+    date: Mon Dec 01 2014 15:49:03 GMT+0100 (CET),
+    volumes: '1' },
+  { type: 'Incremental',
+    date: Mon Dec 01 2014 15:49:05 GMT+0100 (CET),
     volumes: '1' } ]
 ```
 
