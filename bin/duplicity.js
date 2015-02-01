@@ -17,6 +17,7 @@ catch (error)
 config.duplicity_command = config.duplicity_command || 'duplicity';
 config.env = config.env || {};
 config.env['LANG'] = 'en_US.UTF-8';
+config.env['PATH'] = process.env['PATH'];
 
 var program = require('commander');
 
