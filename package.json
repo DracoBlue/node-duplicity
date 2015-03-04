@@ -3,7 +3,7 @@
   "description": "Wrapper for the duplicity cli tool (with json output)",
   "main": "src/index.js",
   "scripts": {
-    "test": "bash tests/*.sh && node_modules/.bin/mocha"
+    "test": "bash tests/*.sh && mocha"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,6 @@
     "commander": "^2.5.0"
   },
   "devDependencies": {
-    "mocha": "^2.1.0",
     "wrench": "^1.5.8"
   }
 }
