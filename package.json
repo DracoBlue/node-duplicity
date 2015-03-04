@@ -3,14 +3,14 @@
   "description": "Wrapper for the duplicity cli tool (with json output)",
   "main": "src/index.js",
   "scripts": {
-    "test": "bash tests/*.sh"
+    "test": "bash tests/*.sh && node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/DracoBlue/node-duplicity.git"
   },
   "bin": {
-	  "duplicity.js": "./bin/duplicity.js"
+    "duplicity.js": "./bin/duplicity.js"
   },
   "keywords": [
     "duplicity"
@@ -23,5 +23,9 @@
   "homepage": "https://github.com/DracoBlue/node-duplicity",
   "dependencies": {
     "commander": "^2.5.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "wrench": "^1.5.8"
   }
 }
