@@ -83,5 +83,5 @@ $ duplicity.js status file://backup
 
 ## License
 
-node-duplicity (duplicity.js) is copyright 2014 by DracoBlue and licensed under the terms of MIT License.
+node-duplicity (duplicity.js) is copyright 2014-2017 by DracoBlue and licensed under the terms of MIT License.
 
