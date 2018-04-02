@@ -31,11 +31,11 @@ command.action(function(url, options) {
     duplicity.getStatus(function(err, data) {
         if (err)
         {
-            console.error('ERROR: ', data);
+            console.error(JSON.stringify('ERROR: ', data));
         }
         else
         {
-            console.log(data);
+            console.log(JSON.stringify(data));
         }
     });
 });
@@ -47,11 +47,11 @@ command.action(function(url, options) {
     duplicity.getCurrentFiles(function(err, data) {
         if (err)
         {
-            console.error('ERROR: ', data);
+            console.log(JSON.stringify(data));
         }
         else
         {
-            console.log(data);
+            console.log(JSON.stringify(data));
         }
     });
 });
@@ -61,7 +61,7 @@ command.description('Verify the backup of a directory vs. an url');
 command.action(function(directory, url, options) {
     duplicity=new DuplicityCollection(url, config);
     duplicity.verify(directory, function(err, data) {
-		console.log(data);
+		console.log(JSON.stringify(data));
 		process.exit(err);
     });
 });
@@ -73,11 +73,11 @@ command.action(function(directory, url, options) {
     duplicity.createFullBackup(directory, function(err, data) {
         if (err)
         {
-            console.error('ERROR: ', data);
+            console.log(JSON.stringify(data));
         }
         else
         {
-            console.log(data);
+            console.log(JSON.stringify(data));
         }
     });
 });
@@ -88,13 +88,13 @@ command.action(function(directory, url, options) {
 	duplicity=new DuplicityCollection(url, config);
 	duplicity.createIncrementalBackup(directory, function(err, data) {
 		if (err)
-		{
-			console.error('ERROR: ', data);
-		}
-		else
-		{
-			console.log(data);
-		}
+        {
+            console.log(JSON.stringify(data));
+        }
+        else
+        {
+            console.log(JSON.stringify(data));
+        }
 	});
 });
 program.parse(process.argv);
